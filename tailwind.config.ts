@@ -78,3 +78,15 @@ const config = {
 } satisfies Config
 
 export default config
+
+// module.exports = {
+//   theme: {
+//     fontFamily: {
+//       'syncopate': [ "Syncopate", 'sans-serif'],
+//       'oswald': ["Oswald", 'sans-serif'],
+//       'syne': ["Syne", 'sans-serif']
+
+    
+//     }
+//   }
+// }
