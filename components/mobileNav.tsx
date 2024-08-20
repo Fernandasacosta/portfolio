@@ -42,7 +42,7 @@ const MobileNav = () => {
       <SheetTrigger asChild>
         <button
           onClick={() => setIsOpen(true)}
-          className="flex justify-center items-center"
+          className="flex justify-center items-center fixed"
         >
           <Menu className="text-[32px] text-accent" />
         </button>
