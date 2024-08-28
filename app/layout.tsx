@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Oswald, Syne } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/header";
+import ContactForm from "@/components/contact-form";
 
 
 
@@ -26,8 +27,9 @@ export default function RootLayout({
         <div className="bg-zinc-300 absolute  bottom-[-100rem] -z-10 left-[-35rem] h-[20rem] w-[20rem] rounded-full blur-[15rem] sm:w-[68.75rem] md:left-[-33rem] lg:left-[-28rem] xl:left-[-15rem] 2xl:left-[-5rem] dark:bg-[#676394]"></div>
 
              <Header/>
-          
+              
             {children}
+            <ContactForm/>
            
            
 
