@@ -2,7 +2,7 @@ import { syncopate, syne } from "@/public/fonts/fonts";
 
 export default function Main() {
   return (
-    <main className="container mx-auto px-0 flex flex-col items-center mt-10">
+    <main className="container mx-auto px-0 flex flex-col items-center mt-10 w-full max-w-[95%] min-h-screen">
       <div className="flex flex-col items-center w-full gap-2 py-8 mt-2">
         <div className="w-full max-w-4xl p-4">
           <h1 className={`${syne.className} text-white text-center text-6xl mb-4 font-bold`}>
@@ -17,6 +17,7 @@ export default function Main() {
           </h3>
         </div>
       </div>
+      
     </main>
   );
 }

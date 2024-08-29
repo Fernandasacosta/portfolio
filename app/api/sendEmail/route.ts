@@ -1,35 +1,27 @@
-// app/api/sendEmail/route.ts
+// app/actions/sendEmail.ts
+'use server';
+
 import nodemailer from 'nodemailer';
-import { NextResponse } from 'next/server';
 
-export async function POST(request: Request) {
-  try {
-    const { subject, body, toEmail } = await request.json();
+export async function sendEmail(formData: FormData) {
+  const subject = formData.get('name') as string;
+  const body = formData.get('message') as string;
+  const toEmail = formData.get('email') as string;
 
-    const transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
-      },
-    });
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS,
+    },
+  });
 
-    const mailOptions = {
-      from: process.env.EMAIL_USER,
-      to: process.env.EMAIL_USER,
-      subject,
-      text:
-      `Pessoa: ${subject} 
-       Email: ${toEmail} 
-       Mensagem: ${body}`,
-    };
-   
+  const mailOptions = {
+    from: process.env.EMAIL_USER,
+    to: process.env.EMAIL_USER,
+    subject,
+    text: `Pessoa: ${subject}\nEmail: ${toEmail}\nMensagem: ${body}`,
+  };
 
-    await transporter.sendMail(mailOptions);
-
-    return NextResponse.json({ message: 'Email enviado com sucesso' }, { status: 200 });
-  } catch (error) {
-    console.error('Error sending email:', error);
-    return NextResponse.json({ message: 'Erro ao enviar email' }, { status: 500 });
-  }
+  await transporter.sendMail(mailOptions);
 }
