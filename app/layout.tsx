@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/header";
 import ContactForm from "@/components/contact-form";
 import { Toaster } from "sonner";
+import Footer from "@/components/footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,6 +27,7 @@ export default function RootLayout({
         {children}
         <ContactForm />
         <Toaster />
+        <Footer/>
       </body>
     </html>
   );
