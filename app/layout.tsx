@@ -6,6 +6,7 @@ import ContactForm from "@/components/contact-form";
 import { Toaster } from "sonner";
 import Footer from "@/components/footer";
 import About from "@/components/about";
+import Marquee from "@/components/marquee";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,6 +27,7 @@ export default function RootLayout({
         <div className="bg-[#fbe2e3] absolute top-[-6rem] -z-10 right-[11rem] h-[20rem] w-[20rem] rounded-full blur-[15rem] sm:w-[68.75rem] dark:bg-[#946263]"></div>
         <Header />
         {children}
+        <Marquee/>
         <About/>
         <ContactForm />
         <Toaster />
