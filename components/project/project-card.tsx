@@ -1,12 +1,16 @@
+'use client'
+
 import Image from "next/image";
+import { useState } from "react";
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { iconsMap } from "@/lib/icons";
+import { oswald, syncopate, syne } from "@/public/fonts/fonts";
 
 interface Project {
   id: number;
   title: string;
   description: string;
-  skills: string; // Lista de habilidades
+  skills: string;
   technologies: string[];
   githubLink: string;
   vercelLink: string;
@@ -18,8 +22,20 @@ interface ProjectCardProps {
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
-  // Divide as habilidades em um array para mapear os ícones
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const skillIcons = project.skills.split(',').map(skill => skill.trim());
+
+  const handleNextImage = () => {
+    setCurrentImageIndex((prevIndex) =>
+      prevIndex === project.images.length - 1 ? 0 : prevIndex + 1
+    );
+  };
+
+  const handlePreviousImage = () => {
+    setCurrentImageIndex((prevIndex) =>
+      prevIndex === 0 ? project.images.length - 1 : prevIndex - 1
+    );
+  };
 
   return (
     <Sheet>
@@ -30,7 +46,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
               <Image
                 width={360}
                 height={180}
-                src={project.images[0]} // Mostrar apenas a primeira imagem no preview
+                src={project.images[0]} 
                 alt={`${project.title} image 1`}
                 className="w-full h-full object-cover"
               />
@@ -44,31 +60,62 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
             <div className="flex space-x-5">
               {skillIcons.map(skill => {
                 const Icon = iconsMap[skill];
-                return Icon ? <Icon key={skill} className="text-2xl" /> : null; // Ajuste o tamanho aqui
+                return Icon ? <Icon key={skill} className="text-2xl" /> : null;
               })}
             </div>
           </div>
         </div>
       </SheetTrigger>
 
-      <SheetContent className="bg-[#0E332A] p-4"> {/* Ajuste de tamanho para 40% da viewport */}
+      {/* Permitir rolagem no conteúdo do sheet */}
+      <SheetContent className="bg-[#0E332A] p-4 overflow-y-auto ">
         <SheetHeader>
-          <SheetTitle className="text-white">{project.title}</SheetTitle>
+          <SheetTitle className={`${syncopate.className} text-white text-2xl mt-5`}>
+            {project.title}
+          </SheetTitle>
         </SheetHeader>
         <SheetDescription className="text-white mt-2">
-          <div>
+            {/* Carrossel de Imagens com centralização */}
+            <div className="relative mt-10 flex flex-col items-center">
+              {project.images.length > 0 && (
+                <Image
+                  width={300} // Definir largura menor
+                  height={200}
+                  src={project.images[currentImageIndex]}
+                  alt={`${project.title} image ${currentImageIndex + 1}`}
+                  className="w-auto h-auto object-cover mx-auto rounded-lg" 
+                />
+              )}
+            
+              <button
+                onClick={handlePreviousImage}
+                className="absolute top-1/2 left-0 transform -translate-y-1/2 bg-black/40 text-white p-2 rounded-full"
+              >
+                &lt;
+              </button>
+              
+              <button
+                onClick={handleNextImage}
+                className="absolute top-1/2 right-0 transform -translate-y-1/2 bg-black/40 text-white p-2 rounded-full"
+              >
+                &gt;
+              </button>
+            </div>
+          <div className="flex flex-col gap-y-8 mt-10">
+            <h3 className={`${syncopate.className} text-white text-xl`}>Sobre o projeto</h3>
             <p>{project.description}</p>
-            <p><strong>Tecnologias:</strong> {project.technologies.join(', ')}</p>
-            <p>
-              <a href={project.githubLink} target="_blank" rel="noopener noreferrer" className="text-emerald-500 underline">
-                Ver no GitHub
-              </a>
-            </p>
-            <p>
-              <a href={project.vercelLink} target="_blank" rel="noopener noreferrer" className="text-emerald-500 underline">
-                Link na Vercel
-              </a>
-            </p>
+            <h3 className={`${syncopate.className} text-white text-xl`}>Tecnologias</h3>
+            <p>{project.technologies.join(', ')}</p>
+            <h3 className={`${syncopate.className} text-white text-xl`}>Github</h3>
+            <a href={project.githubLink} target="_blank" rel="noopener noreferrer" className="hover:text-lime-200 underline">
+              Link do repositório
+            </a>
+            <h3 className={`${syncopate.className} text-white text-xl`}>Vercel</h3>
+            <a href={project.vercelLink} target="_blank" rel="noopener noreferrer" className="hover:text-lime-200 underline">
+              Link da hospedagem
+            </a>
+
+          
           </div>
         </SheetDescription>
       </SheetContent>

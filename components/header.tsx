@@ -6,13 +6,9 @@ import { Computer, ComputerIcon } from "lucide-react";
 import { oswald, syncopate, syne } from "@/public/fonts/fonts";
 import Image from 'next/image'
 
-
-
-
-
-const Header = () => {
+const MainHeader = () => {
   return (
-    <header id="home" className=" py-8 xl:py-5 text-white">
+    <header id="inicio" className=" py-8 xl:py-5 text-white">
       <div className="px-0  container mx-auto flex justify-between items-center pt-5">
         {/* LOGO - NAME */}
        <div className="flex flex-row items-center gap-2">
@@ -34,19 +30,17 @@ const Header = () => {
           <Nav />
         </div>
 
-        <Link href="/"> 
+        <Link href="#contato"> 
         <button
           type="button"
-          className={`${syne.className} px-6 py-3.5 text-base font-syne text-white  bg-[#233831]/40 backdrop-blur-md hover:bg-[#0E332A] focus:ring-4 focus:outline-none rounded-3xl text-center hidden xl:block`}>
-          
-            Hire me
+          className={`${syne.className} px-6 py-3.5 text-base font-syne text-white  bg-[#233831]/40  hover:bg-[#0E332A] focus:outline-none rounded-3xl text-center hidden xl:block`}>
+            Entre em Contato
         </button>
         </Link>
 
 
         {/* mobile nav */}
         <div className="xl:hidden mx-10 mb-7">
-          
           <MobileNav />
         </div>
 
@@ -55,4 +49,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default MainHeader;

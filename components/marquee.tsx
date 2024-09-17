@@ -42,8 +42,9 @@ const Marquee = () => {
       <div className="max-w-6xl w-full mx-auto">
         <div className="relative flex items-center whitespace-nowrap overflow-hidden">
           {/* Cria um wrapper que garante que o conteúdo está visível */}
+         <div className="flex gap-4">
           <motion.div
-            className="flex items-center space-x-16"
+            className="flex items-center gap-4 space-x-16"
             initial={{ x: 0 }}
             animate={{ x: "-100%" }}
             transition={{ repeat: Infinity, ease: "linear", duration: 10 }}
@@ -58,10 +59,11 @@ const Marquee = () => {
             ))}
             <StarIcon />
           </motion.div>
+          </div>
           {/* Duplicar o conteúdo para garantir a rolagem contínua */}
           <motion.div
-            className="absolute top-0 flex items-center space-x-16"
-            initial={{ x: "100%" }}
+            className="absolute top-0 gap-4 flex items-center space-x-16"
+            initial={{ x: "105%" }}
             animate={{ x: 0 }}
             transition={{ repeat: Infinity, ease: "linear", duration: 10  }}
           
@@ -83,3 +85,4 @@ const Marquee = () => {
 }
 
 export default Marquee;
+ 

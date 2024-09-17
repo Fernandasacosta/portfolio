@@ -3,29 +3,34 @@
 import { useState } from "react";
 import { usePathname } from "next/navigation";
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from "./ui/sheet";
-import { Menu, Home, FileText, Briefcase, Mail } from "lucide-react";
+import { Menu, Home, FileText, Briefcase, Mail, Book } from "lucide-react";
 import Link from "next/link";
 
 const links = [
   {
-    name: "home",
-    path: "#",
-    icon: Home,
+    name: "início",
+    path: "#inicio",
+    icon: Home, 
   },
   {
-    name: "resume",
-    path: "#resume",
-    icon: FileText,
+    name: "sobre",
+    path: "#sobre",
+    icon: FileText, 
   },
   {
-    name: "work",
-    path: "#work",
-    icon: Briefcase,
+    name: "projetos",
+    path: "#projetos",
+    icon: Briefcase, 
   },
   {
-    name: "contact",
-    path: "#contact",
-    icon: Mail,
+    name: "experiência",
+    path: "#experiencia",
+    icon: Book, 
+  },
+  {
+    name: "contato",
+    path: "#contato",
+    icon: Mail, 
   },
 ];
 
@@ -48,14 +53,9 @@ const MobileNav = () => {
         </button>
       </SheetTrigger>
       <SheetContent className="flex flex-col bg-[#0E332A] text-white">
-        {/* logo */}
-        <div className="mt-32 mb-40 text-center text-2xl">
-          <Link href="/">
-            <h1 className="text-4xl font-semibold">Fernanda</h1>
-          </Link>
-        </div>
+     
         {/* nav */}
-        <nav className="flex flex-col justify-center items-center gap-8">
+        <nav className="flex flex-col justify-center mt-40 items-center  gap-8 ">
           {links.map((link, index) => {
             const Icon = link.icon;
             return (

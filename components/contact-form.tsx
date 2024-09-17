@@ -11,13 +11,14 @@ const ContactForm = () => {
   const { pending } = useFormStatus();
 
   return (
-    <section className="py-16 px-6 md:py-32 flex items-center justify-center bg-[#ece7e1]">
+    <section id="contato" className="py-16 px-6 md:py-32 flex items-center justify-center bg-[#ece7e1]">
     <div className="w-full max-w-[420px] mx-auto bg-[#ece7e1] rounded-3xl px-4">
-      <h1 className={`${syncopate.className} text-center font-semibold mb-4`}>
-        CONTATO.
+   
+      <h1 className={`${syne.className} text-center font-bold mt-5 text-4xl mb-4`}>
+        Contato
       </h1>
       <h2 className={`${syne.className} text-center`}>
-        Get in touch or shoot an email directly on fernandasacosta@gmail.com
+      Entre em contato ou envie um e-mail diretamente para fernandasacosta@gmail.com
       </h2>
   
       <form
@@ -53,7 +54,7 @@ const ContactForm = () => {
         />
   
         <Button
-          className={`${syne.className} bg-[#485665] rounded-lg w-max mx-auto mt-5 shadow-button`}
+          className= "bg-[#485665] rounded-lg w-max mx-auto mt-5 shadow-button"
           disabled={pending}
         >
           {pending ? 'Enviando...' : 'Enviar mensagem'}

@@ -13,7 +13,7 @@ const Footer = () => {
   return (
     <div className="container mx-auto flex flex-col md:flex-row justify-between items-center text-white bg-[#0E332A] px-0 py-6 text-center md:text-left space-y-4 md:space-y-0">
       
-      <span>Fernanda Costa © 2024. Todos os direitos reservados.</span>
+      <span>© Fernanda Costa 2024. Todos os direitos reservados.</span>
 
       <div className="flex space-x-4">
         {icons.map(({ Icon, link, tooltip }, index) => (

@@ -1,6 +1,6 @@
-import React from "react";
+
+import projectData from "@/lib/mockProjects";
 import ProjectCard from "./project-card";
-import projectData from "../mockProjects";
 
 
 const ProjectList = () => {
