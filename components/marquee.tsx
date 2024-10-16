@@ -41,13 +41,12 @@ const Marquee = () => {
     <div className="max-w-7xl mx-auto mt-4 lg:py-6 overflow-hidden flex justify-center">
       <div className="max-w-6xl w-full mx-auto">
         <div className="relative flex items-center whitespace-nowrap overflow-hidden">
-          {/* Cria um wrapper que garante que o conteúdo está visível */}
          <div className="flex gap-4">
           <motion.div
             className="flex items-center gap-4 space-x-16"
             initial={{ x: 0 }}
             animate={{ x: "-100%" }}
-            transition={{ repeat: Infinity, ease: "linear", duration: 10 }}
+            transition={{ repeat: Infinity, ease: "linear", duration: 30 }}
           >
             {techIcons.map((Icon, index) => (
               <React.Fragment key={index}>
@@ -65,7 +64,7 @@ const Marquee = () => {
             className="absolute top-0 gap-4 flex items-center space-x-16"
             initial={{ x: "105%" }}
             animate={{ x: 0 }}
-            transition={{ repeat: Infinity, ease: "linear", duration: 10  }}
+            transition={{ repeat: Infinity, ease: "linear", duration: 30  }}
           
           >
             {techIcons.map((Icon, index) => (

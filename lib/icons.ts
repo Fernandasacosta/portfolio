@@ -1,6 +1,10 @@
-import { SiNextdotjs, SiTypescript, SiPrisma, SiReact, SiTailwindcss, SiNodedotjs, SiGatsby, SiGraphql, SiStyledcomponents, SiAngular, SiFirebase } from "react-icons/si";
+import { 
+  SiNextdotjs, SiTypescript, SiPrisma, SiReact, SiTailwindcss, 
+  SiNodedotjs, SiGatsby, SiGraphql, SiStyledcomponents, SiAngular, 
+  SiFirebase, SiNestjs, SiGoogle, SiFigma, SiFramer, SiVercel 
+} from "react-icons/si"; 
+import { FaDatabase } from "react-icons/fa"; 
 
-// Mapeamento de nomes de tecnologias para seus respectivos ícones
 export const iconsMap: { [key: string]: React.ElementType } = {
   "Next.js": SiNextdotjs,
   "TypeScript": SiTypescript,
@@ -13,5 +17,10 @@ export const iconsMap: { [key: string]: React.ElementType } = {
   "Styled Components": SiStyledcomponents,
   "Angular": SiAngular,
   "Firebase": SiFirebase,
- 
+  "Nest": SiNestjs,
+  "Postgres": FaDatabase,
+  "Google OAuth": SiGoogle,
+  "Figma": SiFigma,
+  "Framer": SiFramer,
+  "TurboRepo": SiVercel, 
 };

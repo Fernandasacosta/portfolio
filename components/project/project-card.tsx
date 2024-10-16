@@ -12,9 +12,10 @@ interface Project {
   description: string;
   skills: string;
   technologies: string[];
-  githubLink: string;
-  vercelLink: string;
+  githubLink?: string;
+  vercelLink?: string;
   images: string[];
+  image: string[];
 }
 
 interface ProjectCardProps {
@@ -46,7 +47,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
               <Image
                 width={360}
                 height={180}
-                src={project.images[0]} 
+                quality={80}
+                src={project.image[0]}
                 alt={`${project.title} image 1`}
                 className="w-full h-full object-cover"
               />
@@ -58,7 +60,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
               {project.title}
             </strong>
             <div className="flex space-x-5">
-              {skillIcons.map(skill => {
+              {skillIcons.map((skill) => {
                 const Icon = iconsMap[skill];
                 return Icon ? <Icon key={skill} className="text-2xl" /> : null;
               })}
@@ -67,55 +69,78 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
         </div>
       </SheetTrigger>
 
-      {/* Permitir rolagem no conteúdo do sheet */}
-      <SheetContent className="bg-[#0E332A] p-4 overflow-y-auto ">
+      <SheetContent className="bg-[#0E332A] p-4 overflow-y-auto">
         <SheetHeader>
           <SheetTitle className={`${syncopate.className} text-white text-2xl mt-5`}>
             {project.title}
           </SheetTitle>
         </SheetHeader>
+
         <SheetDescription className="text-white mt-2">
-            {/* Carrossel de Imagens com centralização */}
-            <div className="relative mt-10 flex flex-col items-center">
-              {project.images.length > 0 && (
-                <Image
-                  width={300} // Definir largura menor
-                  height={200}
-                  src={project.images[currentImageIndex]}
-                  alt={`${project.title} image ${currentImageIndex + 1}`}
-                  className="w-auto h-auto object-cover mx-auto rounded-lg" 
-                />
-              )}
-            
-              <button
-                onClick={handlePreviousImage}
-                className="absolute top-1/2 left-0 transform -translate-y-1/2 bg-black/40 text-white p-2 rounded-full"
-              >
-                &lt;
-              </button>
-              
-              <button
-                onClick={handleNextImage}
-                className="absolute top-1/2 right-0 transform -translate-y-1/2 bg-black/40 text-white p-2 rounded-full"
-              >
-                &gt;
-              </button>
-            </div>
+          {/* Carrossel de Imagens */}
+          <div className="relative mt-10 flex flex-col items-center">
+            {project.images.length > 0 && (
+              <Image
+                src={project.images[currentImageIndex]}
+                alt={`${project.title} image ${currentImageIndex + 1}`}
+                width={300}
+                height={180}
+                quality={100}
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-cover mx-auto rounded-lg"
+                style={{ maxWidth: "100%", height: "auto" }}
+              />
+            )}
+
+            <button
+              onClick={handlePreviousImage}
+              className="absolute top-1/2 left-0 transform -translate-y-1/2 bg-black/40 text-white p-2 rounded-full"
+            >
+              &lt;
+            </button>
+
+            <button
+              onClick={handleNextImage}
+              className="absolute top-1/2 right-0 transform -translate-y-1/2 bg-black/40 text-white p-2 rounded-full"
+            >
+              &gt;
+            </button>
+          </div>
+
           <div className="flex flex-col gap-y-8 mt-10">
             <h3 className={`${syncopate.className} text-white text-xl`}>Sobre o projeto</h3>
             <p>{project.description}</p>
+
             <h3 className={`${syncopate.className} text-white text-xl`}>Tecnologias</h3>
             <p>{project.technologies.join(', ')}</p>
-            <h3 className={`${syncopate.className} text-white text-xl`}>Github</h3>
-            <a href={project.githubLink} target="_blank" rel="noopener noreferrer" className="hover:text-lime-200 underline">
-              Link do repositório
-            </a>
-            <h3 className={`${syncopate.className} text-white text-xl`}>Vercel</h3>
-            <a href={project.vercelLink} target="_blank" rel="noopener noreferrer" className="hover:text-lime-200 underline">
-              Link da hospedagem
-            </a>
 
-          
+            {project.githubLink && (
+              <>
+                <h3 className={`${syncopate.className} text-white text-xl`}>GitHub</h3>
+                <a
+                  href={project.githubLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-lime-200 underline"
+                >
+                  Link do repositório
+                </a>
+              </>
+            )}
+
+            {project.vercelLink && (
+              <>
+                <h3 className={`${syncopate.className} text-white text-xl`}>Vercel</h3>
+                <a
+                  href={project.vercelLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-lime-200 underline"
+                >
+                  Link da hospedagem
+                </a>
+              </>
+            )}
           </div>
         </SheetDescription>
       </SheetContent>
@@ -124,3 +149,5 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
 };
 
 export default ProjectCard;
+
+
