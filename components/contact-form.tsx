@@ -1,11 +1,12 @@
 'use client';
 
 import { toast } from 'sonner';
-import { syncopate, syne } from "@/public/fonts/fonts";
+import { syne } from "@/public/fonts/fonts";
 import { ArrowRight } from "lucide-react";
 import { Button } from "./ui/button";
-import { sendEmail } from '@/app/api/sendEmail/route';
+
 import { useFormStatus } from 'react-dom';
+import { sendEmail } from '@/app/actions/sendEmail';
 
 const ContactForm = () => {
   const { pending } = useFormStatus();

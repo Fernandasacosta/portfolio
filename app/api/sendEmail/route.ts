@@ -1,27 +1,17 @@
-// app/actions/sendEmail.ts
-'use server';
+import { sendEmail } from '@/app/actions/sendEmail';
+import { NextRequest, NextResponse } from 'next/server';
 
-import nodemailer from 'nodemailer';
+ // Função importada corretamente
 
-export async function sendEmail(formData: FormData) {
-  const subject = formData.get('name') as string;
-  const body = formData.get('message') as string;
-  const toEmail = formData.get('email') as string;
+// Função que será exportada como rota POST
+export async function POST(request: NextRequest) {
+  try {
+    const formData = await request.formData(); // Captura os dados do formulário
+    await sendEmail(formData); // Chama a função de envio de e-mail
 
-  const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS,
-    },
-  });
-
-  const mailOptions = {
-    from: process.env.EMAIL_USER,
-    to: process.env.EMAIL_USER,
-    subject,
-    text: `Pessoa: ${subject}\nEmail: ${toEmail}\nMensagem: ${body}`,
-  };
-
-  await transporter.sendMail(mailOptions);
+    return NextResponse.json({ success: true, message: 'E-mail enviado com sucesso!' });
+  } catch (error) {
+    console.error('Erro ao enviar e-mail:', error);
+    return NextResponse.json({ success: false, message: 'Erro ao enviar e-mail' }, { status: 500 });
+  }
 }
