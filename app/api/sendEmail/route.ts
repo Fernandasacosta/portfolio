@@ -1,9 +1,6 @@
 import { sendEmail } from '@/app/actions/sendEmail';
 import { NextRequest, NextResponse } from 'next/server';
 
- // Função importada corretamente
-
-// Função que será exportada como rota POST
 export async function POST(request: NextRequest) {
   try {
     const formData = await request.formData(); // Captura os dados do formulário

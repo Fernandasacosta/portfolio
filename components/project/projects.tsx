@@ -1,6 +1,5 @@
 import React from "react";
- // Ajuste o caminho conforme necessário
-import { syne } from "@/public/fonts/fonts"; // Certifique-se de que o caminho esteja correto
+import { syne } from "@/public/fonts/fonts"; 
 import ProjectList from "./project-list";
 
 const Projects = () => {

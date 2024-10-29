@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { iconsMap } from "@/lib/icons";
-import { oswald, syncopate, syne } from "@/public/fonts/fonts";
+import { syncopate } from "@/public/fonts/fonts";
 
 interface Project {
   id: number;
@@ -51,6 +51,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                 src={project.image[0]}
                 alt={`${project.title} image 1`}
                 className="w-full h-full object-cover"
+                priority
               />
             )}
           </div>
